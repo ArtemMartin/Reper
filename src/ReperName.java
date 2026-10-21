@@ -15,6 +15,7 @@ public class ReperName {
         this.koef = koef;
         this.poprYgol = poprYgol;
         currentTime = LocalTime.now();
+        Reper.startCountdown(this);
     }
 
     public String getName() {
@@ -39,12 +40,12 @@ public class ReperName {
 
     @Override
     public String toString() {
-        return name + '\'' +
-                ", Дт = " + (int) dalnos +
+        return name +
+                ": Дт = " + (int) dalnos +
                 ", Угол.т = " + (int) ygol +
                 ", koef = " + (int) (koef * 1000) / 1000.0 +
                 ", попр. в нап. = " + (int) poprYgol +
-                ", время создания = " + currentTime.getHour() + ":" + currentTime.getMinute() +
-                '}';
+                ", время создания = " + currentTime.getHour() + ":" + currentTime.getMinute();
     }
 }
+

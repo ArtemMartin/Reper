@@ -1,14 +1,17 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Reper {
-    public static double v0Pristrelochnogo;
-    public static List<ReperName> reperNameList122 = new ArrayList<>();
+    private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
+    public static List<ReperName> reperNameList122 = new CopyOnWriteArrayList<>();
     public ManagerOP managerOpReper;
     public ManagerOP managerOpPerenos;
     public Zel zel;
@@ -24,6 +27,18 @@ public class Reper {
     public static void main(String[] args) {
         Reper reper = new Reper();
         reper.go();
+    }
+
+    //удаление репера из списка
+    public static void startCountdown(ReperName reperName) {
+        long delay = 2L; // 120 минут
+        TimeUnit unit = TimeUnit.MINUTES;
+
+        scheduler.schedule(() -> {
+            // Удаляем объект из общего списка
+            reperNameList122.remove(reperName);
+            System.out.println("Объект - " + reperName.getName() + " удален из списка через 120 мин.");
+        }, delay, unit);
     }
 
     public void go() {
@@ -124,6 +139,7 @@ public class Reper {
                     }
                     break;
                 case 9:
+                    scheduler.shutdownNow();
                     return;
             }
         }
@@ -339,7 +355,7 @@ public class Reper {
 
         }
         if (reperName != null) {
-            System.out.println("Репер " + reperName.getName() + " - оптимален для переноса!!!");
+            System.out.println(reperName.getName() + " - оптимален для переноса!!!");
         }
         return reperName;
     }
