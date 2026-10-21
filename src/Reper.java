@@ -37,6 +37,8 @@ public class Reper {
             System.out.println("7 - Показать БП.                                8 - Сопряженка забить НП");
             System.out.println("10 - Сопряженка засечки.                        11 - Получить среднее по засечке Сопряженки");
             System.out.println("12 - Показать БП Сопряженки.                    9 - EXIT");
+            System.out.println("13 - Показать Реперы.                    ");
+
             System.out.println("********************************************************************************************");
             int a = scanner.nextInt();
             switch (a) {
@@ -114,6 +116,11 @@ public class Reper {
                         sopriajenka.getBP();
                     } else {
                         System.out.println("Объект не инициализирован");
+                    }
+                    break;
+                case 13:
+                    for (ReperName reperName : reperNameList122) {
+                        System.out.println(reperName);
                     }
                     break;
                 case 9:

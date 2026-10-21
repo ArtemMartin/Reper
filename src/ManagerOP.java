@@ -17,12 +17,16 @@ public class ManagerOP {
         vuvodOP();
         System.out.print("Выбрать ОП по номеру в списке: ");
         nomerOP = scanner.nextInt();
-        op = new OP(listOP.get(nomerOP).getName(),
-                listOP.get(nomerOP).getX(),
-                listOP.get(nomerOP).getY(),
-                listOP.get(nomerOP).getH(),
-                listOP.get(nomerOP).getON(),
-                listOP.get(nomerOP).getV0());
+        try {
+            op = new OP(listOP.get(nomerOP).getName(),
+                    listOP.get(nomerOP).getX(),
+                    listOP.get(nomerOP).getY(),
+                    listOP.get(nomerOP).getH(),
+                    listOP.get(nomerOP).getON(),
+                    listOP.get(nomerOP).getV0());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Введён некоректный номер ОП!!!");
+        }
     }
 
     public OP getOp() {
