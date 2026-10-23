@@ -31,7 +31,7 @@ public class Reper {
 
     //удаление репера из списка
     public static void startCountdown(ReperName reperName) {
-        long delay = 2L; // 120 минут
+        long delay = 120L; // 120 минут
         TimeUnit unit = TimeUnit.MINUTES;
 
         scheduler.schedule(() -> {
@@ -47,7 +47,7 @@ public class Reper {
             System.out.println("********************************************************************************************");
             System.out.println("0 - Ввести ОП для создания(пристрелки репера).  2 - Ввести пристрелянные установки.");
             System.out.println("3 - Ввести координаты Репера                    1 - Составить Бюл ПОР ");
-            System.out.println("4 - Посчитать поправки по Реперу.               5 - Ввести ОП для Переноса");
+            System.out.println("4 - Посчитать поправки по Реперу.               ");
             System.out.println("6 - Ввести Цель и использовать пристрелянные поправки пo Реперу");
             System.out.println("7 - Показать БП.                                8 - Сопряженка забить НП");
             System.out.println("10 - Сопряженка засечки.                        11 - Получить среднее по засечке Сопряженки");
@@ -93,13 +93,14 @@ public class Reper {
                         }
                     }
                     break;
-                case 5:
-                    managerOpPerenos = new ManagerOP();
-                    break;
                 case 6:
                     zel = new Zel();
                     if (sistema == 0) {
-                        this.opredYstPoZeli(pristYst122);
+                        int countOP = ManagerOP.getListOP().size();
+                        for (int i = 0; i < countOP; i++) {
+                            managerOpPerenos = new ManagerOP(i);
+                            this.opredYstPoZeli(pristYst122);
+                        }
                     } else if (sistema == 1) {
                         this.opredYstPoZeli(pristYst130);
                     } else {
@@ -451,6 +452,7 @@ public class Reper {
             String snar;
             if (sistema == 0) {
                 System.out.println("*** 2C1(Д30) ***");
+                System.out.println("OP: " + managerOpPerenos.getOp().getName());
                 if (pristYst.getSnar() == 0) {
                     snar = "ОФ56(24)";
                 } else if (pristYst.getSnar() == 2) {

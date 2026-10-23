@@ -12,6 +12,20 @@ public class ManagerOP {
     List<OP> listOP = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
+    public ManagerOP(int countOP) {
+        listOP = getListOP();
+        this.nomerOP = countOP;
+        try {
+            op = new OP(listOP.get(nomerOP).getName(),
+                    listOP.get(nomerOP).getX(),
+                    listOP.get(nomerOP).getY(),
+                    listOP.get(nomerOP).getH(),
+                    listOP.get(nomerOP).getON(),
+                    listOP.get(nomerOP).getV0());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Введён некоректный номер ОП!!!");
+        }
+    }
     public ManagerOP() {
         listOP = getListOP();
         vuvodOP();
@@ -40,7 +54,7 @@ public class ManagerOP {
         }
     }
 
-    public List<OP> getListOP() {
+    public static List<OP> getListOP() {
         List<OP> list = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("OP.txt"), StandardCharsets.UTF_8))) {
             String line;
