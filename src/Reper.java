@@ -375,7 +375,10 @@ public class Reper {
             return;
         }
         double dalIsch = dalYgoldHTopo[0] * reperName.getKoef() + dalYgoldHTopo[0];
-
+        if (sistema == 0 && dalIsch > 15250){
+            System.out.println("Исчисленная дальность для Д30/2С1 превышает 15250!!!");
+            return;
+        }
         String file = this.getFileTS(pristYst);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -452,7 +455,7 @@ public class Reper {
             String snar;
             if (sistema == 0) {
                 System.out.println("*** 2C1(Д30) ***");
-                System.out.println("OP: " + managerOpPerenos.getOp().getName());
+                System.out.println("OП: " + managerOpPerenos.getOp().getName());
                 if (pristYst.getSnar() == 0) {
                     snar = "ОФ56(24)";
                 } else if (pristYst.getSnar() == 2) {
