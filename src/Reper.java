@@ -375,7 +375,7 @@ public class Reper {
             return;
         }
         double dalIsch = dalYgoldHTopo[0] * reperName.getKoef() + dalYgoldHTopo[0];
-        if (sistema == 0 && dalIsch > 15250){
+        if (sistema == 0 && dalIsch > 15250) {
             System.out.println("Исчисленная дальность для Д30/2С1 превышает 15250!!!");
             return;
         }
@@ -767,14 +767,11 @@ public class Reper {
     }
 
     public void watchBP() {
+        List<OP> list = ManagerOP.getListOP();
+        System.out.println("<< БП >>");
         System.out.println("---------------------------------------------------------------------");
-        if (managerOpReper != null) {
-            System.out.println("Пристрелочная ОП:");
-            System.out.println(managerOpReper.getOp());
-        }
-        if (managerOpPerenos != null) {
-            System.out.println("ОП для использования пристрелянных поправок:");
-            System.out.println(managerOpPerenos.getOp());
+        for (OP op : list) {
+            System.out.println(op);
         }
         System.out.println("---------------------------------------------------------------------");
 

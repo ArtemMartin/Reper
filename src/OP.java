@@ -45,6 +45,6 @@ public class OP {
     @Override
     public String toString() {
         return "OП позывной = " + name + " x = " + x + " y = " + y
-                + " h = " + h + " ОН = " + ON + " V0 = " + v0 + "\n";
+                + " h = " + h + " ОН = " + ON + " V0 = " + v0;
     }
 }
