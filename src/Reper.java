@@ -52,7 +52,7 @@ public class Reper {
             System.out.println("7 - Показать БП.                                8 - Сопряженка забить НП");
             System.out.println("10 - Сопряженка засечки.                        11 - Получить среднее по засечке Сопряженки");
             System.out.println("12 - Показать БП Сопряженки.                    9 - EXIT");
-            System.out.println("13 - Показать Реперы.                    ");
+            System.out.println("13 - Показать Реперы.                           14 - удалить Репер из списка");
 
             System.out.println("********************************************************************************************");
             int a = scanner.nextInt();
@@ -139,12 +139,27 @@ public class Reper {
                         System.out.println(reperName);
                     }
                     break;
+                case 14:
+                    deletReper(scanner);
+                    break;
                 case 9:
                     scheduler.shutdownNow();
                     return;
             }
         }
     }
+    //удаление репера из списка
+    private static void deletReper(Scanner scanner) {
+        for (int i = 0; i < reperNameList122.size(); i++) {
+            System.out.println(reperNameList122.get(i).getName() + " - " + i);
+        }
+        System.out.print("Выбрать по номеру какой хочешь удалить: ");
+        int nomRep = scanner.nextInt();
+        scanner.nextLine();
+        reperNameList122.remove(nomRep);
+        System.out.println("Репер " + nomRep + " удалён!!!");
+    }
+
 
     public double[] OGZ(double xop, double yop, double xr, double yr, double hop, double hr) {
         double[] ogz;
